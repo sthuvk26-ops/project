@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Hi I am Sthuti V K</h1>
+    <p>BCA Student | Aspiring Software Developer</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>
+      My goal is to put my BCA education to good use by learning programming
+      and practical development skills.
+    </p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <p>HTML, CSS, JavaScript, Basics of Node.js</p>
+  </section>
+
+  <section>
+    <h2>Contact Me</h2>
+
+    <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+<p id="status" style="color: green; font-weight: bold;"></p>
+  </section>
+
+  <footer>
+    <p>© 2026 My Portfolio</p>
+  </footer>
+
+  <script>
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("status");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // stop page reload
+
+    const formData = new FormData(form);
+
+    const res = await fetch("/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const text = await res.text();
+
+    status.textContent = text;
+    status.style.color = res.ok ? "green" : "red";
+
+    if (res.ok) form.reset();
+  });
+</script>
+</body>
+</html>
