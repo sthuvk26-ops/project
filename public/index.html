@@ -1,67 +1,145 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Portfolio</title>
+  <title>Sthuti Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>Hi I am Sthuti V K</h1>
-    <p>BCA Student | Aspiring Software Developer</p>
-  </header>
+<header>
+  <h1 class="glow">Hi, I am Sthuti V K ✨</h1>
+  <p id="typing"></p>
+</header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      My goal is to put my BCA education to good use by learning programming
-      and practical development skills.
-    </p>
-  </section>
+<!-- ABOUT -->
+<section class="card">
+  <h2>🚀 About Me</h2>
+  <p>
+     I am a dedicated and enthusiastic Bachelor of Computer Applications (BCA) student with a strong passion for technology and innovation. My journey began with curiosity and has grown into a deep interest in software development and web technologies. I completed my schooling at St. Charles with 83% and my Pre-University education at St. Charles PU College with 97%, showing my academic consistency and commitment.</p>
+<p> Currently, I am pursuing my BCA and actively improving my skills in HTML, CSS, JavaScript, and backend technologies. I enjoy creating visually appealing designs and functional applications. My goal is to become a professional software developer and build impactful digital solutions that combine creativity with technology.
+  </p>
+.
+  </p>
+</section>
 
-  <section>
-    <h2>Skills</h2>
-    <p>HTML, CSS, JavaScript, Basics of Node.js</p>
-  </section>
+<!-- EDUCATION -->
+<section class="card">
+  <h2>🎓 Educational Journey</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>St. Charles School</h3>
+      <p>SSLC - 83%</p>
+    </div>
+    <div class="timeline-item">
+      <h3>St. Charles PU College</h3>
+      <p>PUC - 97%</p>
+    </div>
+    <div class="timeline-item">
+      <h3>BCA (Current)</h3>
+      <p>Building strong foundation in programming & development</p>
+    </div>
+  </div>
+</section>
 
-  <section>
-    <h2>Contact Me</h2>
+<!-- SKILLS -->
+<section class="card">
+  <h2>💻 Technical Skills</h2>
 
-    <form id="contactForm">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit">Send</button>
-    </form>
-<p id="status" style="color: green; font-weight: bold;"></p>
-  </section>
+  <div class="skill">
+    <p>HTML</p>
+    <div class="bar"><div style="width:90%"></div></div>
+  </div>
 
-  <footer>
-    <p>© 2026 My Portfolio</p>
-  </footer>
+  <div class="skill">
+    <p>CSS</p>
+    <div class="bar"><div style="width:85%"></div></div>
+  </div>
 
-  <script>
-  const form = document.getElementById("contactForm");
-  const status = document.getElementById("status");
+  <div class="skill">
+    <p>JavaScript</p>
+    <div class="bar"><div style="width:75%"></div></div>
+  </div>
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // stop page reload
+  <div class="skill">
+    <p>Node.js</p>
+    <div class="bar"><div style="width:60%"></div></div>
+  </div>
+</section>
 
-    const formData = new FormData(form);
+<!-- CERTIFICATES -->
+<section class="card">
+  <h2>📜 Certificates</h2>
+  <div class="cert-grid">
+    <div class="cert">Web Development Certificate</div>
+    <div class="cert">Python Basics Certificate</div>
+    <div class="cert">Database Fundamentals</div>
+  </div>
+</section>
 
-    const res = await fetch("/submit", {
-      method: "POST",
-      body: formData
-    });
+<!-- HOBBIES -->
+<section class="card">
+  <h2>🎨 Tech Hobbies</h2>
+  <div class="hobbies">
+    <span>💡 UI Designing</span>
+    <span>⚙️ Coding Mini Projects</span>
+    <span>🎮 Game Logic Creation</span>
+    <span>🌐 Exploring Web Tech</span>
+  </div>
+</section>
 
-    const text = await res.text();
+<!-- CONTACT -->
+<section class="card">
+  <h2>📩 Contact Me</h2>
 
-    status.textContent = text;
-    status.style.color = res.ok ? "green" : "red";
+  <form id="contactForm">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send 🚀</button>
+  </form>
 
-    if (res.ok) form.reset();
+  <p id="status"></p>
+</section>
+
+<footer>
+  <p>©️ 2026 Sthuti V K | Designed with ❤️</p>
+</footer>
+
+<script>
+/* Typing Animation */
+const text = "BCA Student | Future Software Developer 💻";
+let i = 0;
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 50);
+  }
+}
+typing();
+
+/* Form */
+const form = document.getElementById("contactForm");
+const status = document.getElementById("status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+
+  const res = await fetch("/submit", {
+    method: "POST",
+    body: formData
   });
+
+  const text = await res.text();
+  status.textContent = text;
+  status.style.color = res.ok ? "lightgreen" : "red";
+
+  if (res.ok) form.reset();
+});
 </script>
+
 </body>
 </html>
